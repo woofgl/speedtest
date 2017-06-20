@@ -1,0 +1,41 @@
+@import "../pcss/utils.pcss";
+
+button, .btn{
+	background: none;
+	border: none;
+	border-radius: 18px;
+	font-size: 14px;
+	display: inline-block;
+	height: 36px;
+	line-height: 36px;
+	padding: 0 2rem;
+	vertical-align: middle;
+	-webkit-tap-highlight-color: transparent;
+	cursor: pointer;
+	transition: .3s ease-out;
+	position: relative;
+	overflow: hidden;
+	user-select: none;
+	
+	&:hover{
+		background-color: #DFDFDF;
+	}
+
+	&:focus{
+		outline: none;
+		background-color: #DFDFDF;
+	}
+
+	@mixin ripple;
+
+
+	&.btn-danger{
+		background: $color-error-darkest;
+		color: white;
+	}
+	&.btn-danger-secondary{
+		border: 1px solid $color-error-darkest;
+		color: $color-error-darkest;
+	}
+
+}
