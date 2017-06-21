@@ -21,8 +21,8 @@ ServerChart.prototype.init = function(el, opts){
 	// declares a tree layout and assigns the size
 	self._treemap = d3.tree().size([width, height]);
 
-	// appends a 'group' element to 'svg'
-	// moves the 'group' element to the top left margin
+	// appends a "group" element to "svg"
+	// moves the "group" element to the top left margin
 	self._g = d3.select(el).append("svg")
 			.attr("class", "ServerChart")
 			.attr("width", self._width + margin.left + margin.right)
@@ -53,10 +53,10 @@ ServerChart.prototype.update = function(data){
 		.enter().append("path")
 		.attr("class", "link")
 		.attr("d", function(d) {
-			var h = (d.y - d.parent.y) / 4;
-			return "M " + d.x + "," + (d.y - h) + "L" + d.x + "," + (d.y - 2 * h)
-				+ "L" + d.parent.x + "," + (d.y - 2 * h)
-				+ "L" + d.parent.x + "," + (d.y - 3 * h);
+			var h = (d.y - d.parent.y) / 8;
+			return "M " + d.x + "," + (d.y - 3 * h) + "L" + d.x + "," + (d.y - 4 * h)
+				+ "L" + d.parent.x + "," + (d.y - 4 * h)
+				+ "L" + d.parent.x + "," + (d.y - 5 * h);
 		});
 
 	// adds each node as a group
@@ -87,8 +87,50 @@ ServerChart.prototype.update = function(data){
 		.attr("text-anchor", "middle")
 		.text(function(d) { return d.data.name; });
 
+	// adds virtual progress
+	createProgressBar(node, "virtual-progress", 28, "virtualProgress");
 
+	// adds standard progress
+	createProgressBar(node, "standard-progress", 48, "standardProgress");
+	
 	return self;
 };
 
 // --------- /LineChart --------- //
+
+
+function createProgressBar(node, classes, y, key){
+	var barW = 100;
+	var ra = 8;
+	var progress =  node.append("svg")
+		.attr("class", function(d){
+			return classes + (!d.data[key] ? " hide" : "");
+		})
+		.attr("height", 16)
+		.attr("width", barW + 4)
+		.attr("x", -1 * barW / 2)
+		.attr("y", y);
+
+	progress.append("rect")
+		.attr("class", "progress-bg")
+		.attr("rx", ra)
+		.attr("ry", ra)
+		.attr("height", 12)
+		.attr("width", barW - 4)
+		.attr("x", 2)
+		.attr("y", 2);
+
+	progress.append("rect")
+		.attr("class", "progress-fg")
+		.attr("height", 12)
+		.attr("rx", ra)
+		.attr("ry", ra)
+		.attr("y", 2)
+		.attr("x", 1)
+		.attr("width", function(d){
+			var progress = d.data[key] || 0;
+			var w = (barW - 4)
+			return progress / 100 * w;
+		});
+	return classes;
+}

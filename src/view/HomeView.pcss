@@ -33,6 +33,25 @@
 		justify-content: center;
 		align-items: center;
 		flex-direction: column;
+		.file-name{
+			height: 24px;
+		}
+		.action-con{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			&.uploading{
+				display: none;
+			}
+		}
+		&.uploading{
+			.action-con{
+				display: none;
+				&.uploading{
+					display: flex;
+				}
+			}
+		}
 		.btn-go{
 			padding: 0;
 			width: 36px;

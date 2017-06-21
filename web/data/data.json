@@ -1,23 +1,14 @@
 {
-    "name": "Origin: California",
-    "value": 10,
-    "type": "black",
-    "level": "red",
-    "children": [
-      {
-        "name": "US East",
-        "value": 15,
-        "type": "grey"
-      },
-      {
-        "name": "Ireland",
-        "value": 10,
-        "type": "grey"
-      },
-      {
-        "name": "Beijing",
-        "value": 10,
-        "type": "grey"
-      }
-    ]
+	"name": "Origin: California",
+	"children": [
+		{
+			"name": "US East"
+		},
+		{
+			"name": "Ireland"
+		},
+		{
+			"name": "Beijing"
+		}
+	]
 }

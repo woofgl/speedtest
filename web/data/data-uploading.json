@@ -1,0 +1,20 @@
+{
+	"name": "Origin: California",
+	"children": [
+		{
+			"name": "US East",
+			"standardProgress": 20,
+			"virtualProgress": 40
+		},
+		{
+			"name": "Ireland",
+			"standardProgress": 30,
+			"virtualProgress": 70
+		},
+		{
+			"name": "Beijing",
+			"standardProgress": 50,
+			"virtualProgress": 80
+		}
+	]
+}
