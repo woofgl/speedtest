@@ -1,0 +1,80 @@
+<script id="SummaryView" type="text/html">
+<div class="SummaryView">
+
+		<div class="summary-left">
+			<div class="table-header">
+				<div class="switch-group">
+					<label>Upload time</label>
+					<div class="switch" tabindex="0"></div>
+					<label>Throughput</label>
+				</div>
+				<div class="icon-group">
+					<a href="#dash" class="active"><i>{{{symbol "ico-dashboard"}}}</i></a>
+					<a href="#dash"><i>{{{symbol "ico-reports"}}}</i></a>
+				</div>
+			</div>
+			<div class="ui-table">
+				<div class="ui-thead">
+					<div class="time"><span class="txt-big">Upload time</span><span>(seconds)</span></div>
+					<div class="us-east"><span>US East</span><span>(Virginia)</span></div>
+					<div class="europe"><span>Europe</span><span>(Ireland)</span></div>
+					<div class="apac"><span>APAC</span><span>(Japan)</span></div>
+				</div>
+
+				<div class="ui-tbody">
+					<div class="ui-tr">
+						<div class="time">Standard Internet</div>
+						<div class="us-east">123</div>
+						<div class="europe">123</div>
+						<div class="apac">123</div>
+					</div>
+					<div class="ui-tr sel">
+						<div class="time">Teridion Virtual Network</div>
+						<div class="us-east">123</div>
+						<div class="europe">123</div>
+						<div class="apac">123</div>
+					</div>
+					<div class="ui-tr">
+						<div class="time">Times Faster</div>
+						<div class="us-east">20x</div>
+						<div class="europe">5x</div>
+						<div class="apac">13x</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="btn btn-danger-secondary btn-start-again">Start again</div>
+		</div>
+
+		<div class="summary-right">
+			<header>Results summary</header>
+			<section class="summary-text">
+				<div class="helper-text">
+					<span class="speed">3.2x</span>
+					<span>Throughput</span>
+					<span>improvement</span>
+				</div>
+				<div class="helper-text">
+					<span class="speed">8.7x</span>
+					<span class="nowrap">Faster file transfer</span>
+				</div>
+				<div class="helper-text">
+					<span class="speed">5.2x</span>
+					<span>Throughput</span>
+					<span class="nowrap">Worker utilization</span>
+				</div>
+			</section>
+		</div>
+</div>
+</script>
+
+<script id="SummaryView-table-item" type="text/html">
+{{#each items}}
+<div class="ui-tr {{changed}}">
+	<div class="time">{{time}}</div>
+	<div class="us-east">{{usEast}}</div>
+	<div class="europe">{{europe}}</div>
+	<div class="apac">{{apac}}</div>
+</div>
+{{/each}}
+</script>

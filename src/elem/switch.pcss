@@ -3,8 +3,8 @@
 .switch{
 	position: relative;
 	display: block;
-	height: 14px;
-	width: 34px;
+	height: 24px;
+	width: 56px;
 	background: #898989;
 	border-radius: 100px;
 	cursor: pointer;
@@ -14,18 +14,18 @@
 	&.on{
 		background: #6fbeb5;
 		&:after{
-			left: 14px;
+			left: 33px;
 			background: #179588;
 		}
 	}
 
 	&:after{
 		position: absolute;
-		left: -1px;
-		top: -3px;
+		left: 5px;
+		top: 4px;
 		display: block;
-		width: 20px;
-		height: 20px;
+		width: 16px;
+		height: 16px;
 		border-radius: 100px;
 		background: #f0f0f0;
 		box-shadow: 0px 3px 3px rgba(0,0,0,0.05);
@@ -35,15 +35,6 @@
 
 	&:focus{		
 		outline: none;
-		&:after{
-			box-shadow: 0px 0px 0px 14px rgba(55, 55, 55, .2);
-		}
-
-		&.on:after{
-			box-shadow: 0px 0px 0px 14px rgba(114,190,181, .3);
-		}			
-
-		
 	}
 
 	&:active:after {
@@ -57,5 +48,28 @@
 
 	&.disabled {
 		background: #bcbdbc;
+	}
+}
+
+.switch-group{
+	display: flex;
+	align-items: center;
+	label{
+		color: $color-grey-light;
+		font-weight: 500;
+		&:first-child{
+			color: $color-grey-dark;
+		}
+	}
+	.switch{
+		margin: 0 16px;
+	}
+	&.on{
+		label{
+			color: $color-grey-dark;
+			&:first-child{
+				color: $color-grey-light;
+			}
+		}
 	}
 }

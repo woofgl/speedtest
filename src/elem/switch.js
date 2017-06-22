@@ -17,5 +17,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 function toggle(switchEl){
 	switchEl.classList.toggle("on");
+	var switchGroupEl = d.closest(switchEl, ".switch-group");
+	switchGroupEl.classList.toggle("on");
 }
 

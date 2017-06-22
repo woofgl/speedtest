@@ -3,6 +3,7 @@ var render = require("../js-app/render.js").render;
 
 var pathToView = {
 	"": "HomeView", 
+	"summary": "SummaryView",
 	"sand": "SandboxView" // this is accessible by hand in case the developer has src/view/Sandbox/ (not checked in)
 };
 
