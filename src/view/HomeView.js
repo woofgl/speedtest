@@ -22,6 +22,7 @@ d.register("HomeView",{
 		view._serverChart = new ServerChart().init(serverChartEl);
 
 		showServers.call(view);	
+
 	},
 	events: {
 		"click; .btn-choose": function(evt){
@@ -33,6 +34,7 @@ d.register("HomeView",{
 			var view = this;
 			var fileEl = evt.selectTarget;
 			var val = fileEl.value;
+			storeFile.call(view, fileEl.files[0]);
 			if(val){
 				d.first(view.el, ".file-name").innerHTML = val;
 			}else{
@@ -42,8 +44,7 @@ d.register("HomeView",{
 		"click; .btn-go": function(evt){
 			var view = this;
 			var fileEl = d.first(view.el, ".file-choose");
-			var val = fileEl.value;
-			if(val){
+			if(view._file){
 				view._uploading = true;
 				var titleEl = d.first(view.el, ".title");
 				titleEl.innerHTML = "Uploading..."
@@ -66,11 +67,39 @@ d.register("HomeView",{
 				var uploadConEl = d.first(view.el, ".section-upload");
 				uploadConEl.classList.remove("uploading");
 			}
+		},
+		"drop": function(evt){
+			var view = this;
+			evt.preventDefault();
+			var fileList = evt.dataTransfer.files;
+			var file = fileList[0];
+			storeFile.call(view, file);
+			if(file){
+				d.first(view.el, ".file-name").innerHTML = file.name;
+			}
 		}
+	},
+	docEvents:{
+		dragleave:function(evt){
+            evt.preventDefault(); 
+        }, 
+        drop:function(evt){
+            evt.preventDefault(); 
+        }, 
+        dragenter:function(evt){
+            evt.preventDefault(); 
+        }, 
+        dragover:function(evt){
+            evt.preventDefault(); 
+        } 
 	}
 
 });
 
+function storeFile(file){
+	var view = this;
+	view._file = file;
+}
 
 function showServers(){
 	var view = this;
