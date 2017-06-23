@@ -47,6 +47,8 @@ ServerChart.prototype.update = function(data){
 	// maps the node data to the tree layout
 	nodes = treemap(nodes);
 
+	d3.selectAll(".progress").remove();
+
 	// adds the links between the nodes
 	var link = g.selectAll(".link")
 		.data(nodes.descendants().slice(1))
@@ -88,10 +90,10 @@ ServerChart.prototype.update = function(data){
 		.text(function(d) { return d.data.name; });
 
 	// adds virtual progress
-	createProgressBar(node, "virtual-progress", 28, "virtualProgress");
+	createProgressBar(node, "progress virtual", 28, "virtualProgress");
 
 	// adds standard progress
-	createProgressBar(node, "standard-progress", 48, "standardProgress");
+	createProgressBar(node, "progress standard", 48, "standardProgress");
 	
 	return self;
 };

@@ -58,14 +58,15 @@ d.register("HomeView",{
 		},
 		"click; .btn-cancel": function(evt){
 			var view = this;
-			var fileEl = d.first(view.el, ".file-choose");
-			var val = fileEl.value;
-			if(val){
+			if(view._file){
 				view._uploading = false;
 				var titleEl = d.first(view.el, ".title");
 				titleEl.innerHTML = "Upload a file"
 				var uploadConEl = d.first(view.el, ".section-upload");
 				uploadConEl.classList.remove("uploading");
+			
+				// to show servers status
+				showServers.call(view);
 			}
 		},
 		"drop": function(evt){
