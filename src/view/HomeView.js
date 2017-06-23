@@ -43,8 +43,8 @@ d.register("HomeView",{
 		},
 		"click; .btn-go": function(evt){
 			var view = this;
-			var fileEl = d.first(view.el, ".file-choose");
-			if(view._file){
+			if(verifyUploading.call(view)){
+				var fileEl = d.first(view.el, ".file-choose");
 				view._uploading = true;
 				var titleEl = d.first(view.el, ".title");
 				titleEl.innerHTML = "Uploading..."
@@ -108,4 +108,22 @@ function showServers(){
 	ajax.get(url).then(function(data){
 		view._serverChart.update(data);
 	});
+}
+
+function verifyUploading(){
+	var view = this;
+	var file = view._file;
+	var notifHub = d.hub("notifHub");
+	if(!file){
+		notifHub.pub("notify", {type: "error", content: "File should be choosed."});
+		return false;
+	}
+
+	var minSize = 1 * 1024 * 1024;
+	var maxSize = 50 * 1024 * 1024;
+	if(file.size > maxSize || file.size < minSize){
+		notifHub.pub("notify", {type: "error", content: "File recommended 1-50MB."});
+		return false;
+	}
+	return true;
 }
